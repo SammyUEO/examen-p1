@@ -1,4 +1,6 @@
-﻿namespace examen_p1
+﻿using System;
+
+namespace examen_p1
 {
     internal class Program
     {
@@ -12,17 +14,32 @@
             for (int i = 0; i < numberOfPeople; i++)
             {
                 Console.WriteLine("informatii");
-                people[i] = Print(people);
+                people[i] = Print();
                 
             }
-            foreach( var person in people)
+            Person oldestPerson = PersonProcessor.FindTheOldestPerson(people);
+
+
+            if (oldestPerson != null)
+            {
+                Console.WriteLine($"peroana cu cea mai mare varsta: {oldestPerson.FirstName};{oldestPerson.LastName}");
+                Console.WriteLine($" varsta; {oldestPerson.Age}");
+            }
+            else
+            {
+                Console.WriteLine("nu exista");
+
+            }
+ 
+
+            foreach ( var person in people)
             {
                 Console.WriteLine($"Nume: {person.FirstName} {person.LastName}");
                 Console.WriteLine($"Year of birth: {person.YearOfBirth}");
                 Console.WriteLine($"Age: {person.Age}\n");
             }
 
-            static Person Print(Person[] people)
+            static Person Print()
             {
                 Person person = new Person();
                 Console.WriteLine("Prenume: ");
@@ -34,21 +51,11 @@
                 Console.WriteLine("Varsta: ");
                person.YearOfBirth= int.Parse(Console.ReadLine());
 
+               return person;
+
+         
+
                 
-
-                Person oldestPerson = PersonProcessor.FindTheOldestPerson(people);
-
-                if (oldestPerson != null)
-                {
-                    Console.WriteLine($"peroana cu cea mai mare varsta: {oldestPerson.FirstName};{oldestPerson.LastName}");
-                    Console.WriteLine($" varsta; {oldestPerson.Age}");
-                }
-                else
-                {
-                    Console.WriteLine("nu exista");
-                }
-
-                return person;
             }
            
 

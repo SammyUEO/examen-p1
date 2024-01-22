@@ -23,19 +23,37 @@ namespace examen_p1
         }
 
     }
-}   static class PersonProcessor
+}
+static class PersonProcessor
 {
     public static Person FindTheOldestPerson(Person[] people)
     {
+        if (people == null || people.Length == 0)
+        {
+            return null; 
+        }
+
         Person oldestPerson = null;
 
+        
         foreach (var person in people)
         {
-            if (person == null || person.Age > oldestPerson.Age)
+            if (person != null)
+            {
+                oldestPerson = person;
+                break;
+            }
+        }
+
+     
+        foreach (var person in people)
+        {
+            if (person != null && person.Age < oldestPerson.Age)
             {
                 oldestPerson = person;
             }
         }
+
         return oldestPerson;
     }
 }
